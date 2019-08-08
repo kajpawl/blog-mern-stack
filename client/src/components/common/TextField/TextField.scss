@@ -1,0 +1,45 @@
+@import '../../../styles/settings.scss';
+
+.text-field {
+  position: relative;
+  display: block;
+  margin: $base-size * 2 0 $base-size 0;
+
+  &__input {
+    border: none;
+    border-bottom: 1px solid $color-text-light;
+    font-family: inherit;
+    outline: none;
+    font-size: inherit;
+    padding: $base-size / 2 0;
+    transition: .2s;
+    opacity: 0.8;
+    background: none;
+    width: 100%;
+    max-width: $base-size * 20;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &:focus {
+      border-bottom: 2px solid $color-primary;
+      opacity: 1;
+    }
+
+  }
+
+  &__label {
+    position: absolute;
+    top: -$base-size * 1;
+    left: 0;
+    font-size: $base-size;
+    transition: .2s;
+
+    &--big {
+      font-size: inherit;
+      top: 4px;
+    }
+  }
+
+}

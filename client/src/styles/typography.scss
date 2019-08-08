@@ -1,0 +1,20 @@
+@import './settings.scss';
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+a {
+  color: $color-text-light;
+  transition: .3s;
+
+  &:hover {
+    color: $color-text;
+  }
+
+  &.active {
+    color: $color-text;
+    border-bottom: 1px solid $color-text-light;
+  }
+}

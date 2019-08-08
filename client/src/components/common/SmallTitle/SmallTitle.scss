@@ -1,0 +1,9 @@
+@import '../../../styles/settings.scss';
+
+.small-title {
+  margin: $base-size/2 0;
+  font-size: $base-size * 2.5;
+  font-weight: 600;
+  position: relative;
+  color: $color-text;
+}

@@ -1,0 +1,35 @@
+$color-text: #333;
+$color-text-light: #666;
+$color-text-bright: #fff;
+$color-primary: #3498db;
+$color-secondary: #218c74;
+$color-background: #fff;
+
+$color-success: #01916d;
+$color-success-back: #00bc8c;
+$color-info: #2b7cb3;
+$color-info-back: #3598db;
+$color-warning: #f0932b;
+$color-warning-back: #d68529;
+$color-danger: #f0932b;
+$color-danger-back: #d68529;
+$color-error: #EA2027;
+$color-error-back: #ff5d6c;
+
+$color-textfield-border: #ddd;
+$color-editor-border: #ccc;
+$color-editor-border-light: #ddd;
+
+$font-header: 'Source Sans Pro', sans-serif;
+$font-text: 'Source Sans Pro', sans-serif;
+
+$radius: 5px;
+$base-size: 14px;
+$transition: all 0.5s;
+
+@mixin p-el($element) {
+  &:#{$element}, &::#{$element} {
+    position: absolute;
+    @content;
+  }
+}

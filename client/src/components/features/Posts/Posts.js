@@ -20,7 +20,7 @@ class Posts extends React.Component {
       <div>
         <ul>
           {(pending || !success) && <Spinner />}
-          {!pending && success && posts.length && <PostsList posts={posts} />}
+          {!pending && success && posts && <PostsList posts={posts} />}
           {!pending && error && <Alert variant="error">{error}</Alert>}
           {!pending && success && (posts.length === 0) && <Alert variant="info">No posts</Alert>}
         </ul>

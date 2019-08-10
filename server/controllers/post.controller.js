@@ -1,9 +1,21 @@
+const Post = require('../models/post.model');
+
 //  get all posts
 
-exports.getPosts = function(req, res) {
-  const data = [
-    { id: '1adfasf', title: 'Lorem ipsum', content: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.' },
-    { id: '2evxc34', title: 'Lorem ipsum II', content: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.' },
-  ]
-  res.json(data);
+exports.getPosts = async (req, res) => {
+  try {
+    res.status(200).json(await Post.find());
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
+// get single post
+
+exports.getSinglePost = async (req, res) => {
+  try {
+    res.status(200).json(await Post.findOne({ id: req.params.id }));
+  } catch (err) {
+    res.status(500).json(err);
+  }
 };

@@ -6,7 +6,7 @@ import PostSummary from '../PostSummary/PostSummary';
 const PostsList = ({ posts }) => (
   <div>
     <section className="posts-list">
-      {posts.map(post => <PostSummary key={post.id} {...post} />)}
+      {posts ? posts.map(post => <PostSummary key={post.id} {...post} />) : null}
     </section>
   </div>
 );

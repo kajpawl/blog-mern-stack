@@ -1,10 +1,12 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import PageTitle from '../../common/PageTitle/PageTitle';
 import HtmlBox from '../../common/HtmlBox/HtmlBox';
 import Spinner from '../../common/Spinner/Spinner';
 import Alert from '../../common/Alert/Alert';
+import Button from '../../common/Button/Button';
 
 class SinglePost extends React.Component {
 
@@ -15,6 +17,7 @@ class SinglePost extends React.Component {
 
   render() {
     const { singlePost } = this.props;
+    const { title, author, content } = this.props.singlePost;
     const { pending, error, success} = this.props.request;
 
     return (
@@ -22,13 +25,14 @@ class SinglePost extends React.Component {
         {(pending || !success) && <Spinner />}
         {!pending && success && singlePost && 
           <div>
-            <PageTitle>{singlePost.title}</PageTitle> 
-            <div className="post-author">
-              <HtmlBox>{singlePost.author}</HtmlBox>
-            </div>
-            <div className="post-content">
-              <HtmlBox>{singlePost.content}</HtmlBox>
-            </div>
+            <PageTitle>{title}</PageTitle> 
+            <p className="post-author">Author: {author}</p>
+            <HtmlBox className="post-content">{content}</HtmlBox>
+            <Link to={'/posts'}>
+              <Button variant="primary">
+                Back to posts
+              </Button>
+            </Link>
           </div>
         }
         {!pending && error && <Alert variant="error">{error}</Alert>}

@@ -1,6 +1,5 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import { connect } from 'react-redux';
 import Editor from 'react-medium-editor';
 import 'medium-editor/dist/css/medium-editor.css';
 import 'medium-editor/dist/css/themes/default.css';
@@ -22,6 +21,14 @@ class PostForm extends React.Component {
     }
   }
 
+  async componentDidMount() {
+    const { resetRequest, loadSinglePost, match } = this.props;
+    resetRequest();
+    if(match.params.id) await loadSinglePost(match.params.id);
+    const { singlePost } = this.props;
+    if(match.params.id) this.setState({ post: singlePost });
+  }
+
   handleChange = e => {
     const { post } = this.state;
     this.setState({ post: { ...post, [e.target.name]: e.target.value } });
@@ -32,24 +39,28 @@ class PostForm extends React.Component {
     this.setState({ post: { ...post, content: text  }});
   }
 
-  addPost = e => {
-    const { addPost } = this.props;
+  handlePostSubmit = e => {
+    const { addPost, editPost, match, resetRequest } = this.props;
     const { post } = this.state;
 
     e.preventDefault();
-    addPost(post);
+    if (match.params.id) {
+      resetRequest();
+      editPost(post, match.params.id);
+    }
+    else addPost(post);
   }
 
   render() {
     const { post } = this.state;
-    const { handleChange, handleEditor, addPost } = this;
-    const { request } = this.props;
+    const { handleChange, handleEditor, handlePostSubmit } = this;
+    const { request, match, singlePost } = this.props;
 
     if(request.error) return <Alert variant="error">{request.error}</Alert>
-    else if(request.success) return <Alert variant="success">Post has been added!</Alert>
+    else if(!singlePost.title && request.success) return <Alert variant="success">Post has been submitted!</Alert>
     else if(request.pending) return <Spinner />
     else return (
-      <form onSubmit={addPost}>
+      <form onSubmit={handlePostSubmit}>
         <TextField
           label="Title"
           value={post.title}
@@ -69,7 +80,7 @@ class PostForm extends React.Component {
           onChange={handleEditor}
           options={{ placeholder: false, toolbar: { buttons: ['bold', 'italic', 'underline', 'anchor', 'h2', 'h3'] } }}
         />
-        <Button variant="primary">Add post</Button>
+        <Button variant="primary">{!match.params.id ? 'Add post' : 'Update post'}</Button>
       </form>
     );
   }
@@ -78,6 +89,9 @@ class PostForm extends React.Component {
 PostForm.propTypes = {
   request: PropTypes.object.isRequired,
   addPost: PropTypes.func.isRequired,
+  editPost: PropTypes.func.isRequired,
+  singlePost: PropTypes.object,
+  match: PropTypes.object.isRequired,
 };
 
 export default PostForm;

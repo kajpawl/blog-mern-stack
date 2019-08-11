@@ -12,10 +12,17 @@ const PostSummary = ({ id, title, content, author }) => (
   <article className="post-summary">
     <Link to={`posts/${id}`}>
       <SmallTitle>{title}</SmallTitle>
-      <p className="post-author">Author: {author}</p>
-      <HtmlBox className="post-content">{cutText(content, 250)}</HtmlBox>
+    </Link>
+    <p className="post-author">Author: {author}</p>
+    <HtmlBox className="post-content">{cutText(content, 250)}</HtmlBox>
+    <Link to={`posts/${id}`}>
       <Button variant="primary">
         Read more
+      </Button>
+    </Link>
+    <Link to={`posts/edit/${id}`}>
+      <Button variant="primary">
+        Update post
       </Button>
     </Link>
   </article>

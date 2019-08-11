@@ -51,3 +51,12 @@ exports.editPost = async (req, res) => {
     res.status(500).json(err);
   }
 };
+
+// delete post
+exports.deletePost = async (req, res) => {
+  try {
+    res.status(200).json(await Post.findOneAndRemove({ id: req.params.id }));
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};

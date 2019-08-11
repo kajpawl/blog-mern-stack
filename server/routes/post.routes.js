@@ -15,4 +15,7 @@ router.route('/posts').post(PostController.addPost);
 // edit post
 router.route('/posts/:id').post(PostController.editPost);
 
+// remove post
+router.route('/posts/:id').delete(PostController.deletePost);
+
 module.exports = router;

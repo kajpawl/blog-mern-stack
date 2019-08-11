@@ -105,6 +105,20 @@ export const editPostRequest = (post, id) => {
   };
 };
 
+export const deletePostRequest = id => {
+  return async dispatch => {
+
+    dispatch(startRequest());
+    try {
+      await axios.delete(`${API_URL}/posts/${id}`);
+      await new Promise((resolve, reject) => setTimeout(resolve, 2000));
+    }
+    catch(e) {
+      dispatch(errorRequest(e.message));
+    }
+  };
+};
+
 /*  REDUCER  */
 
 export default function reducer(statePart = initialState, action = {}) {

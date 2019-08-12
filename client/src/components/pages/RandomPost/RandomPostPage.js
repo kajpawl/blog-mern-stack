@@ -1,10 +1,10 @@
 import React from 'react';
 import SinglePost from '../../features/SinglePost/SinglePostContainer';
 
-const SinglePostPage = props => (
+const RandomPostPage = props => (
   <div>
-    <SinglePost match={props.match.params.id} />
+    <SinglePost match={'random'} />
   </div>
 );
 
-export default SinglePostPage;
+export default RandomPostPage;

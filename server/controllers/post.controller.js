@@ -42,6 +42,19 @@ exports.getSinglePost = async (req, res) => {
   }
 };
 
+// get random post
+
+exports.getRandomPost = async (req, res) => {
+  try {
+    const amount = await Post.countDocuments();
+    const random = Math.floor(Math.random() * amount);
+
+    res.status(200).json(await Post.findOne().skip(random));
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
 // add new post
 
 exports.addPost = async (req, res) => {

@@ -11,8 +11,9 @@ import Button from '../../common/Button/Button';
 class SinglePost extends React.Component {
 
   componentDidMount() {
-    const { loadSinglePost, match } = this.props;
-    loadSinglePost(match.params.id);
+    const { loadSinglePost, match, loadRandomPost } = this.props;
+    console.log(match);
+    match !== 'random' ? loadSinglePost(match) : loadRandomPost();
   }
 
   render() {

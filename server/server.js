@@ -3,6 +3,7 @@ const cors = require('cors');
 const config = require('./config');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
+const sanitize = require('mongo-sanitize');
 
 const loadTestData = require('./testData');
 
@@ -13,7 +14,7 @@ const postRoutes = require('./routes/post.routes');
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.json(sanitize()));
 app.use(helmet());
 app.use('/api', postRoutes);
 

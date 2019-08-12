@@ -81,6 +81,22 @@ export const loadSinglePostRequest = id => {
   };
 };
 
+export const loadRandomPostRequest = () => {
+    return async dispatch => {
+
+    dispatch(startRequest());
+    try {
+      let res = await axios.get(`${API_URL}/posts/random`);
+      await new Promise((resolve, reject) => setTimeout(resolve, 2000));
+      dispatch(loadSinglePost(res.data));
+      dispatch(endRequest());
+    }
+    catch(e) {
+      dispatch(errorRequest(e.message));
+    }
+  };
+};
+
 export const loadPostsByPageRequest = (page, postsNumber) => {
   return async dispatch => {
 

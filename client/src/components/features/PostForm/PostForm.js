@@ -51,13 +51,19 @@ class PostForm extends React.Component {
     else addPost(post);
   }
 
+  handlePostDelete = id => {
+    const { resetRequest, deletePost } = this.props;
+    resetRequest();
+    deletePost(id);
+  }
+
   render() {
     const { post } = this.state;
-    const { handleChange, handleEditor, handlePostSubmit } = this;
+    const { handleChange, handleEditor, handlePostSubmit, handlePostDelete } = this;
     const { request, match, singlePost } = this.props;
 
     if(request.error) return <Alert variant="error">{request.error}</Alert>
-    else if(!singlePost.title && request.success) return <Alert variant="success">Post has been submitted!</Alert>
+    else if(!singlePost.title && request.success) return <Alert variant="success">{!match.params.id ? 'Post has been added!' : 'Post has been updated!'}</Alert>
     else if(request.pending) return <Spinner />
     else return (
       <form onSubmit={handlePostSubmit}>
@@ -81,6 +87,7 @@ class PostForm extends React.Component {
           options={{ placeholder: false, toolbar: { buttons: ['bold', 'italic', 'underline', 'anchor', 'h2', 'h3'] } }}
         />
         <Button variant="primary">{!match.params.id ? 'Add post' : 'Update post'}</Button>
+        {match.params.id && <button type="button" onClick={(id) => handlePostDelete(match.params.id)} className="button button--danger">Delete post</button>}
       </form>
     );
   }

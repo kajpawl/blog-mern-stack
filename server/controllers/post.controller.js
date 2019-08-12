@@ -11,6 +11,27 @@ exports.getPosts = async (req, res) => {
   }
 };
 
+// get posts by  range
+
+exports.getPostsByRange = async (req, res) => {
+  try {
+    let { startAt, limit } = req.params;
+
+    startAt = parseInt(startAt);
+    limit = parseInt(limit);
+
+    const posts = await Post.find().skip(startAt).limit(limit);
+    const amount = await Post.countDocuments();
+
+    res.status(200).json({
+      posts,
+      amount,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
 // get single post
 
 exports.getSinglePost = async (req, res) => {
@@ -22,6 +43,7 @@ exports.getSinglePost = async (req, res) => {
 };
 
 // add new post
+
 exports.addPost = async (req, res) => {
   try {
     const { title, author, content } = req.body;
@@ -44,6 +66,7 @@ exports.addPost = async (req, res) => {
 };
 
 // edit post
+
 exports.editPost = async (req, res) => {
   try {
     res.status(200).json(await Post.update({ id: req.params.id }, req.body));
@@ -53,6 +76,7 @@ exports.editPost = async (req, res) => {
 };
 
 // delete post
+
 exports.deletePost = async (req, res) => {
   try {
     res.status(200).json(await Post.findOneAndRemove({ id: req.params.id }));

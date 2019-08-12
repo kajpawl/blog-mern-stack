@@ -6,6 +6,9 @@ const PostController = require('../controllers/post.controller');
 // get all posts
 router.route('/posts').get(PostController.getPosts);
 
+// get posts by range
+router.route('/posts/range/:startAt/:limit').get(PostController.getPostsByRange);
+
 // get single post
 router.route('/posts/:id').get(PostController.getSinglePost);
 

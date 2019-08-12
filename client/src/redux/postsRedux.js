@@ -86,6 +86,7 @@ export const loadPostsByPageRequest = (page, postsNumber) => {
 
     dispatch(startRequest());
     try {
+      if(page === undefined) page = 1;
       const postsPerPage = postsNumber || 10;
 
       const startAt = (page - 1) * postsPerPage;

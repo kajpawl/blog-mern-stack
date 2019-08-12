@@ -7,6 +7,7 @@ class Pagination extends React.Component {
 
   state = {
     presentPage: this.props.initialPage || 1,
+    visible: this.props.visible === false ? false : true,
   }
 
   changePage = newPage => {
@@ -18,12 +19,12 @@ class Pagination extends React.Component {
 
   render() {
     const { pages } = this.props;
-    const { presentPage } = this.state;
+    const { presentPage, visible } = this.state;
     const { changePage } = this;
 
     return (
       <div className="pagination">
-        <ul className="pagination__list">
+      {visible && <ul className="pagination__list">
 
         {presentPage !== 1 &&
           <li 
@@ -51,6 +52,7 @@ class Pagination extends React.Component {
         }
 
         </ul>
+      }
       </div>
     );
   }
@@ -58,8 +60,9 @@ class Pagination extends React.Component {
 
 Pagination.propTypes = {
   pages: PropTypes.number.isRequired,
-  initialPage: PropTypes.number,
   onPageChange: PropTypes.func.isRequired,
+  initialPage: PropTypes.number,
+  visible: PropTypes.bool,
 };
 
 export default Pagination;

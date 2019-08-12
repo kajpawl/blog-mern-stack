@@ -9,7 +9,7 @@ class PostsCounter extends React.Component {
     return (
       <div className="PostsCounter">
       {postsCount ? 
-        <div>Posts amount: {postsCount}</div>
+        <div>Posts: {postsCount}</div>
       :
         <div>No posts found</div>
       }

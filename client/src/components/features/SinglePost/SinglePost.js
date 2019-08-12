@@ -1,6 +1,8 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
+import { FacebookProvider, Comments, ShareButton } from 'react-facebook';
+import { BASE_URL } from '../../../config';
 
 import PageTitle from '../../common/PageTitle/PageTitle';
 import HtmlBox from '../../common/HtmlBox/HtmlBox';
@@ -17,9 +19,9 @@ class SinglePost extends React.Component {
   }
 
   render() {
-    const { singlePost } = this.props;
+    const { singlePost, location } = this.props;
     const { title, author, content } = this.props.singlePost;
-    const { pending, error, success} = this.props.request;
+    const { pending, error, success } = this.props.request;
 
     return (
       <div>
@@ -29,11 +31,17 @@ class SinglePost extends React.Component {
             <PageTitle>{title}</PageTitle> 
             <p className="post-author">Author: {author}</p>
             <HtmlBox className="post-content">{content}</HtmlBox>
-            <Link to={'/posts'}>
-              <Button variant="primary">
-                Back to posts
-              </Button>
-            </Link>
+            <FacebookProvider appId="903746783320802">
+              <Comments href={`${BASE_URL}/${location.pathname}`} />
+              <Link to={'/posts'}>
+                <Button variant="primary">
+                  Back to posts
+                </Button>
+              </Link>
+              <ShareButton className="button button--primary" href="http://www.facebook.com">
+                Share on Facebook
+              </ShareButton>
+            </FacebookProvider>
           </div>
         }
         {!pending && error && <Alert variant="error">{error}</Alert>}

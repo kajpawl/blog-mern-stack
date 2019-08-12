@@ -3,7 +3,7 @@ import SinglePost from '../../features/SinglePost/SinglePostContainer';
 
 const RandomPostPage = props => (
   <div>
-    <SinglePost match={'random'} />
+    <SinglePost location={props.location} match={'random'} />
   </div>
 );
 

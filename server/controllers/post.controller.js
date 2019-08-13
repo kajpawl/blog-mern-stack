@@ -20,7 +20,7 @@ exports.getPostsByRange = async (req, res) => {
     startAt = parseInt(startAt);
     limit = parseInt(limit);
 
-    const posts = await Post.find().skip(startAt).limit(limit);
+    const posts = await Post.find().sort({date: -1}).skip(startAt).limit(limit);
     const amount = await Post.countDocuments();
 
     res.status(200).json({
@@ -65,6 +65,7 @@ exports.addPost = async (req, res) => {
     newPost.title = title;
     newPost.author = author;
     newPost.content = content;
+    newPost.date = Date.now();
     newPost.id = uuid();
 
     // let newPost = new Post(req.body);

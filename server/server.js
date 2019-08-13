@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const config = require('./config');
@@ -17,6 +18,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json(sanitize()));
 app.use(helmet());
 app.use('/api', postRoutes);
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, '/../client/build')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/../client/build/index.html'));
+});
 
 // connect back-end code with the database
 mongoose.connect(config.DB, { useNewUrlParser: true });

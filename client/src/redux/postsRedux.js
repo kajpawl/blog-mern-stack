@@ -48,6 +48,7 @@ export const errorRequest = error => ({ error, type: ERROR_REQUEST });
 export const resetRequest = () => ({ type: RESET_REQUEST });
 
 /*  THUNKS  */
+// commented-out lines are to simulate slow response
 
 export const loadPostsRequest = () => {
   return async dispatch => {
@@ -55,7 +56,7 @@ export const loadPostsRequest = () => {
     dispatch(startRequest());
     try {
       let res = await axios.get(`${API_URL}/posts`);
-      await new Promise((resolve, reject) => setTimeout(resolve, 2000));
+      // await new Promise((resolve, reject) => setTimeout(resolve, 2000));
       dispatch(loadPosts(res.data));
       dispatch(endRequest());
     }
@@ -71,7 +72,7 @@ export const loadSinglePostRequest = id => {
     dispatch(startRequest());
     try {
       let res = await axios.get(`${API_URL}/posts/${id}`);
-      await new Promise((resolve, reject) => setTimeout(resolve, 2000));
+      // await new Promise((resolve, reject) => setTimeout(resolve, 2000));
       dispatch(loadSinglePost(res.data));
       dispatch(endRequest());
     }
@@ -87,7 +88,7 @@ export const loadRandomPostRequest = () => {
     dispatch(startRequest());
     try {
       let res = await axios.get(`${API_URL}/posts/random`);
-      await new Promise((resolve, reject) => setTimeout(resolve, 2000));
+      // await new Promise((resolve, reject) => setTimeout(resolve, 2000));
       dispatch(loadSinglePost(res.data));
       dispatch(endRequest());
     }
@@ -109,7 +110,7 @@ export const loadPostsByPageRequest = (page, postsNumber) => {
       const limit = postsPerPage;
 
       let res = await axios.get(`${API_URL}/posts/range/${startAt}/${limit}`);
-      await new Promise((resolve, reject) => setTimeout(resolve, 2000));
+      // await new Promise((resolve, reject) => setTimeout(resolve, 2000));
 
       const payload = {
         posts: res.data.posts,
@@ -134,7 +135,7 @@ export const addPostRequest = post => {
     try {
       // let res = 
       await axios.post(`${API_URL}/posts`, post);
-      await new Promise((resolve, reject) => setTimeout(resolve, 2000));
+      // await new Promise((resolve, reject) => setTimeout(resolve, 2000));
       dispatch(endRequest());
     }
     catch(e) {
@@ -149,7 +150,7 @@ export const editPostRequest = (post, id) => {
     dispatch(startRequest());
     try {
       await axios.post(`${API_URL}/posts/${id}`, post);
-      await new Promise((resolve, reject) => setTimeout(resolve, 2000));
+      // await new Promise((resolve, reject) => setTimeout(resolve, 2000));
       dispatch(endRequest());
     }
     catch(e) {
@@ -164,7 +165,7 @@ export const deletePostRequest = id => {
     dispatch(startRequest());
     try {
       await axios.delete(`${API_URL}/posts/${id}`);
-      await new Promise((resolve, reject) => setTimeout(resolve, 2000));
+      // await new Promise((resolve, reject) => setTimeout(resolve, 2000));
       dispatch(endRequest());
     }
     catch(e) {

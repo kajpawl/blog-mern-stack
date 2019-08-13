@@ -48,7 +48,7 @@ class SinglePost extends React.Component {
                   Back to posts
                 </Button>
               </Link>
-              <ShareButton className="button button--primary" href="http://www.facebook.com">
+              <ShareButton className="button button--primary" href={`${BASE_URL}/${location.pathname}`}>
                 Share on Facebook
               </ShareButton>
             </FacebookProvider>

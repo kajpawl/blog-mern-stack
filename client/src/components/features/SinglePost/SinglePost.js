@@ -12,16 +12,25 @@ import Button from '../../common/Button/Button';
 
 class SinglePost extends React.Component {
 
+  state = {
+    isMounted: false,
+  }
+
   componentDidMount() {
     const { loadSinglePost, match, loadRandomPost } = this.props;
-    console.log(match);
     match !== 'random' ? loadSinglePost(match) : loadRandomPost();
+    this.setState({ isMounted: true });
+  }
+
+  componentWillUnmount() {
+    this.setState({ isMounted: false });
   }
 
   render() {
     const { singlePost, location } = this.props;
     const { title, author, content } = this.props.singlePost;
     const { pending, error, success } = this.props.request;
+    const { isMounted } = this.state;
 
     return (
       <div>
@@ -31,6 +40,7 @@ class SinglePost extends React.Component {
             <PageTitle>{title}</PageTitle> 
             <p className="post-author">Author: {author}</p>
             <HtmlBox className="post-content">{content}</HtmlBox>
+            {isMounted &&
             <FacebookProvider appId="903746783320802">
               <Comments href={`${BASE_URL}/${location.pathname}`} />
               <Link to={'/posts'}>
@@ -42,6 +52,7 @@ class SinglePost extends React.Component {
                 Share on Facebook
               </ShareButton>
             </FacebookProvider>
+            }
           </div>
         }
         {!pending && error && <Alert variant="error">{error}</Alert>}

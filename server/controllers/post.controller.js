@@ -67,6 +67,7 @@ exports.addPost = async (req, res) => {
     newPost.content = content;
     newPost.date = Date.now();
     newPost.id = uuid();
+    newPost.rate = 0;
 
     // let newPost = new Post(req.body);
     // newPost.id = uuid();
@@ -84,6 +85,20 @@ exports.addPost = async (req, res) => {
 exports.editPost = async (req, res) => {
   try {
     res.status(200).json(await Post.update({ id: req.params.id }, req.body));
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
+// rate post
+
+exports.ratePost = async (req, res) => {
+  try {
+    const value = req.params.rate === 'downvote' ? -1 : 1;
+
+    res.status(200).json(
+      await Post.update({ id: req.params.id }, { $inc: { rate: value } })
+    );
   } catch (err) {
     res.status(500).json(err);
   }

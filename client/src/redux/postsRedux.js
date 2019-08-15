@@ -224,7 +224,7 @@ export default function reducer(statePart = initialState, action = {}) {
     case RATE_POST:
       const { data, singlePost } = statePart;
       const rating = action.value === 'downvote' ? -1 : 1;
-      const updatedData = data.map(post => post.id === action.id ? { ...post, rate: post.rate + rating } : post)
+      const updatedData = data.map(post => post.id === action.id ? { ...post, rate: post.rate + rating } : post);
       return { ...statePart, data: updatedData, singlePost: { ...singlePost, rate: singlePost.rate + rating } };
 
     default:

@@ -1,6 +1,6 @@
 ## About
 
-The project is a full-stack web app for blogging based on the MERN stack. It relies mostly React, Redux and React Router in the front-end, and on the Node, Express and MongoDB in the back-end.
+The project is a full-stack Progressive Web App for blogging based on the MERN stack. It relies mostly React, Redux and React Router in the front-end, and on the Node, Express and MongoDB in the back-end.
 
 The project was deployed on the Heroku platform and is available at [https://damp-river-81166.herokuapp.com/](https://damp-river-81166.herokuapp.com/).
 
@@ -17,7 +17,8 @@ You can manipulate with the records from the database at the following API endpo
 - Get random post: GET `/posts/random`
 - Get requested set of posts: GET `/posts/range/:startAt/:limit`
 - Upload new post: POST `/posts`
-- Edit post (define post by its id): POST `/posts/:id`
+- Edit post (define post by its id): PUT `/posts/:id`
+- Rate post (define rating: `upvote` or `downvote`, and post by its id): PUT `/posts/:rate/:id`
 - Delete post (define post by its id): DELETE `/posts/:id`
 
 ## Technologies
@@ -28,7 +29,7 @@ The front-end of the app was bootstrapped with [Create React App](https://github
 - React.js - for user interface design and rendering
 - Redux - for global state management
 - React Router - for intuitive routing within the app
-- React Facebook plugins - for integration with
+- React Facebook plugins - for integration with Facebook
 
 Development wise, it also uses:
 - GIT - for version control
@@ -50,7 +51,7 @@ Suggested config variables are:
 - 'API_URL': 'http://localhost:8000/api'
 - 'BASE_URL': 'http://localhost:3000'
 
-#### 'server' folder
+#### `server` folder
 - 'PORT': 8000
 - 'DB': link to your database. In my case it was 'mongodb://localhost:27017/mernapp'
 

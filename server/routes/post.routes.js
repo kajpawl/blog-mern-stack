@@ -19,7 +19,10 @@ router.route('/posts/:id').get(PostController.getSinglePost);
 router.route('/posts').post(PostController.addPost);
 
 // edit post
-router.route('/posts/:id').post(PostController.editPost);
+router.route('/posts/:id').put(PostController.editPost);
+
+// rate post
+router.route('/posts/:rate/:id').put(PostController.ratePost);
 
 // remove post
 router.route('/posts/:id').delete(PostController.deletePost);

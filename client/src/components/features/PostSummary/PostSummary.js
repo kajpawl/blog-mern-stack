@@ -14,7 +14,6 @@ const PostSummary = ({ id, title, content, author, rate, ratePost }) => (
     <Link to={`posts/${id}`}>
       <SmallTitle>{title}</SmallTitle>
     </Link>
-    <RatePost ratePost={ratePost} id={id} rate={rate} />
     <p className="post-author">Author: {author}</p>
     <HtmlBox className="post-content">{cutText(content, 250)}</HtmlBox>
     <Link to={`posts/${id}`}>
@@ -27,6 +26,7 @@ const PostSummary = ({ id, title, content, author, rate, ratePost }) => (
         Update post
       </Button>
     </Link>
+    <RatePost ratePost={ratePost} id={id} rate={rate} />    
   </article>
 );
 

@@ -7,6 +7,7 @@ const Post = new Schema({
   content: { type: 'String', required: true },
   author: { type: 'String', required: true },
   date: { type: 'Number', required: false },
+  rate: { type: 'Number', required: false },
 });
 
 module.exports = mongoose.model('Post', Post);

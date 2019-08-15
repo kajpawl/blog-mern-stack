@@ -8,6 +8,17 @@
   transition: .2s;
   cursor: default;
   position: relative;
+
+  &::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+
+  .rating-post {
+    float: right;
+    margin: $base-size * 1.5;
+  }
 }
 
 .post-summary:hover {
@@ -16,4 +27,19 @@
   border-radius: $radius;
   box-shadow: 0 0 20px rgba(0,0,0,0.1);
   padding-left: $base-size * 1.5;
+}
+
+@media (max-width: 767px) {
+
+  .post-summary {
+    margin-left: -$base-size*2;
+
+    &:hover {
+      padding-left: $base-size;
+    }
+    .rating-post {
+      float: none;
+      margin: 0 $base-size * .5 $base-size * .5;
+    }
+  }
 }

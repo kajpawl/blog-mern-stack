@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { FacebookProvider, Comments, ShareButton } from 'react-facebook';
 import { BASE_URL } from '../../../config';
 
+import RatePost from '../RatePost/RatePost';
 import PageTitle from '../../common/PageTitle/PageTitle';
 import HtmlBox from '../../common/HtmlBox/HtmlBox';
 import Spinner from '../../common/Spinner/Spinner';
@@ -27,8 +28,8 @@ class SinglePost extends React.Component {
   }
 
   render() {
-    const { singlePost, location } = this.props;
-    const { title, author, content } = this.props.singlePost;
+    const { singlePost, location, ratePost } = this.props;
+    const { id, title, author, content, rate } = this.props.singlePost;
     const { pending, error, success } = this.props.request;
     const { isMounted } = this.state;
 
@@ -51,6 +52,7 @@ class SinglePost extends React.Component {
               <ShareButton className="button button--primary" href={`${BASE_URL}/${location.pathname}`}>
                 Share on Facebook
               </ShareButton>
+              <RatePost ratePost={ratePost} id={id} rate={rate} />
             </FacebookProvider>
             }
           </div>
@@ -71,6 +73,7 @@ SinglePost.propTypes = {
   }),
   request: PropTypes.object.isRequired,
   loadSinglePost: PropTypes.func.isRequired,
+  ratePost: PropTypes.func.isRequired,
 };
 
 export default SinglePost;

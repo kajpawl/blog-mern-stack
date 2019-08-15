@@ -3,10 +3,10 @@ import { PropTypes } from 'prop-types';
 
 import PostSummary from '../PostSummary/PostSummary';
 
-const PostsList = ({ posts }) => (
+const PostsList = ({ posts, ratePost }) => (
   <div>
     <section className="posts-list">
-      {posts ? posts.map(post => <PostSummary key={post.id} {...post} />) : null}
+      {posts ? posts.map(post => <PostSummary key={post.id} {...post} ratePost={ratePost} />) : null}
     </section>
   </div>
 );
@@ -18,8 +18,10 @@ PostsList.propTypes = {
       title: PropTypes.string.isRequired,
       content: PropTypes.string.isRequired,
       author: PropTypes.string.isRequired,
+      rate: PropTypes.number,
     })
   ),
+  ratePost: PropTypes.func.isRequired,
 };
 
 export default PostsList;

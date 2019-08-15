@@ -27,7 +27,7 @@ class Posts extends React.Component {
 
   render() {
     const { pending, error, success } = this.props.request;
-    const { posts, pages } = this.props;
+    const { posts, pages, ratePost } = this.props;
     const { loadPostPage } = this;
     const { pagination, } = this.state;
 
@@ -37,7 +37,7 @@ class Posts extends React.Component {
         <ul>
           {!pending && success && posts && 
             <div>
-              <PostsList posts={posts} />
+              <PostsList posts={posts} ratePost={ratePost} />
             </div>
           }
         </ul>
@@ -59,9 +59,11 @@ Posts.propTypes = {
       title: PropTypes.string.isRequired,
       content: PropTypes.string.isRequired,
       author: PropTypes.string.isRequired,
+      rate: PropTypes.number,
     })
   ),
   loadPostsByPage: PropTypes.func.isRequired,
+  ratePost: PropTypes.func.isRequired,
   request: PropTypes.object.isRequired,
   pages: PropTypes.number.isRequired,
   postsPerPage: PropTypes.number,

@@ -1,12 +1,12 @@
 ## About
 
-The project is a full-stack Progressive Web App for blogging based on the MERN stack. It relies mostly React, Redux and React Router in the front-end, and on the Node, Express and MongoDB in the back-end.
+The project is a full-stack Progressive Web App for blogging based on the MERN stack. It relies mostly on React, Redux and React Router in the front-end, and on the Node, Express and MongoDB in the back-end.
 
 The project was deployed on the Heroku platform and is available at [https://damp-river-81166.herokuapp.com/](https://damp-river-81166.herokuapp.com/).
 
 ## Features
 
-The application provides features of **listing, adding, editing, deleting posts**, as well as **displaying single  and random post**.
+The application provides features of **listing, adding, editing, rating and deleting posts**, as well as **displaying single and random post**.
 The app is **integrated with Facebook**, which allows commenting and sharing posts on Facebook.
 
 The app keeps track on the number of posts and their date of addition, and supports defining number of requested posts and starting number of posts displayed.
